@@ -3,6 +3,7 @@ package dev.prateekthakur.dragonballencyclopedia.ui.screens.characters
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
@@ -15,8 +16,12 @@ fun CharactersPage(modifier: Modifier = Modifier, viewModel: CharacterViewModel 
 
     Box(modifier = modifier.fillMaxSize()) {
         LazyColumn {
-            items(characters.size) {
-                CharacterView(character = characters[it])
+            itemsIndexed(characters) { index, character ->
+                CharacterView(character)
+
+                if (index >= characters.lastIndex - 2) {
+                    viewModel.loadMore()
+                }
             }
         }
     }

@@ -19,16 +19,23 @@ class PlanetsViewModel
     private val _planets = MutableStateFlow<List<DragonBallPlanet>>(emptyList())
     val planets: StateFlow<List<DragonBallPlanet>> = _planets
 
+    private var page = 1
+
     init {
-        getPlanets()
+        loadMore()
     }
 
     private fun getPlanets(page: Int = 1, limit: Int = 10) {
         viewModelScope.launch {
+            val data = dataRepository.getPlanets(page, limit).getOrNull() ?: emptyList()
             _planets.update {
-                dataRepository.getPlanets(page, limit).getOrNull() ?: emptyList()
+                it + data
             }
             Log.d("PlanetsViewModel", "getCharacters: ${planets.value.size}")
         }
+    }
+
+    fun loadMore(){
+        getPlanets(page++, 10)
     }
 }

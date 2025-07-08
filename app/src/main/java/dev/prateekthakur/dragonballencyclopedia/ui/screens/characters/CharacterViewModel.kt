@@ -19,16 +19,24 @@ class CharacterViewModel @Inject constructor(private val dataRepository: DragonB
     private val _characters = MutableStateFlow<List<DragonBallCharacter>>(emptyList())
     val characters = _characters.asStateFlow()
 
+    private var currentPage = 1
+    private var limit = 10
+
     init {
-        getCharacters()
+        loadMore()
     }
 
     private fun getCharacters(page: Int = 1, limit: Int = 10) {
         viewModelScope.launch {
+            val data = dataRepository.getCharacters(page, limit).getOrNull() ?: emptyList()
             _characters.update {
-                dataRepository.getCharacters(page, limit).getOrNull() ?: emptyList()
+                it + data
             }
             Log.d("CharacterViewModel", "getCharacters: ${characters.value.size}")
         }
+    }
+
+    fun loadMore() {
+        getCharacters(currentPage++, limit)
     }
 }
