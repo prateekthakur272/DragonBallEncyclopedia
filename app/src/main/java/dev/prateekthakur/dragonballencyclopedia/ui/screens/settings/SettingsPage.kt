@@ -1,7 +1,6 @@
 package dev.prateekthakur.dragonballencyclopedia.ui.screens.settings
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme

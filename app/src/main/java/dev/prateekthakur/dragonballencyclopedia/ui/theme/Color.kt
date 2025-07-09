@@ -9,9 +9,9 @@ val PrimaryDark = Color(0xFF388E3C)
 val OnPrimaryDark = Color(0xFFFFFFFF)
 
 // Secondary
-val SecondaryLight = Color(0xFF8BC34A)
+val SecondaryLight = Color(0xFFE78B24)
 val OnSecondaryLight = Color(0xFF000000)
-val SecondaryDark = Color(0xFF689F38)
+val SecondaryDark = Color(0xFFE18728)
 val OnSecondaryDark = Color(0xFFFFFFFF)
 
 // Tertiary (Accent)
