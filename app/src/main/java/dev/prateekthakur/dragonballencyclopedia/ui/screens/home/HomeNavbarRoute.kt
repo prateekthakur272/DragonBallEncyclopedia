@@ -9,4 +9,5 @@ sealed class HomeNavbarRoute(
 ){
     data object Characters : HomeNavbarRoute("characters", "Characters", R.drawable.character_icon)
     data object Planets : HomeNavbarRoute("planets", "Planets", R.drawable.planet_icon)
+    data object Settings : HomeNavbarRoute("settings", "Settings", R.drawable.settings_icon)
 }
