@@ -18,4 +18,7 @@ interface DataApi {
 
     @GET("${ApiEndpoints.CHARACTERS}/{id}")
     suspend fun getCharacter(@Path("id") id: Int) : DragonBallCharacterDetails
+
+    @GET("${ApiEndpoints.PLANETS}/{id}")
+    suspend fun getPlanet(@Path("id") id: Int) : DragonBallPlanet
 }

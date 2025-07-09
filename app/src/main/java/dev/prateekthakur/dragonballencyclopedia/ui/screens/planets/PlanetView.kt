@@ -1,6 +1,7 @@
 package dev.prateekthakur.dragonballencyclopedia.ui.screens.planets
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,6 +23,8 @@ import androidx.compose.ui.unit.dp
 import dev.prateekthakur.dragonballencyclopedia.domain.models.DragonBallPlanet
 import dev.prateekthakur.dragonballencyclopedia.ui.composables.InfoChip
 import dev.prateekthakur.dragonballencyclopedia.ui.composables.NetworkImage
+import dev.prateekthakur.dragonballencyclopedia.ui.navigation.AppRoutes
+import dev.prateekthakur.dragonballencyclopedia.ui.navigation.navController
 
 @Composable
 fun PlanetView(planet: DragonBallPlanet, modifier: Modifier = Modifier) {
@@ -33,7 +36,9 @@ fun PlanetView(planet: DragonBallPlanet, modifier: Modifier = Modifier) {
                 1.dp,
                 MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
                 RoundedCornerShape(16.dp)
-            )
+            ).clickable {
+                navController.navigate(AppRoutes.PlanetDetails.create(planet.id))
+            }
     ) {
         Column(modifier = modifier.fillMaxWidth()) {
             NetworkImage(

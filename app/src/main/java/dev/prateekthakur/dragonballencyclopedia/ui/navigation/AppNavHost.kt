@@ -10,6 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import dev.prateekthakur.dragonballencyclopedia.ui.screens.characterdetails.CharacterDetailsScreen
 import dev.prateekthakur.dragonballencyclopedia.ui.screens.home.HomeScreen
+import dev.prateekthakur.dragonballencyclopedia.ui.screens.planetdetails.PlanetDetailsScreen
 
 @SuppressLint("StaticFieldLeak")
 lateinit var navController: NavHostController
@@ -23,6 +24,9 @@ fun AppNavHost(controller: NavHostController = rememberNavController()) {
         }
         composable(AppRoutes.CharacterDetails.routeTemplate, arguments = listOf(navArgument("id") { type = NavType.IntType })) {
             CharacterDetailsScreen()
+        }
+        composable(AppRoutes.PlanetDetails.routeTemplate, arguments = listOf(navArgument("id"){ type = NavType.IntType })){
+            PlanetDetailsScreen()
         }
     }
 }

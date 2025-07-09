@@ -37,4 +37,8 @@ class DragonBallDataRepositoryImpl @Inject constructor (private val dataApi: Dat
     override suspend fun getCharacter(id: Int): Result<DragonBallCharacterDetails> {
         return inResult { dataApi.getCharacter(id) }
     }
+
+    override suspend fun getPlanet(id: Int): Result<DragonBallPlanet> {
+        return inResult { dataApi.getPlanet(id) }
+    }
 }

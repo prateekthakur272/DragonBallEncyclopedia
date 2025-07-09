@@ -6,4 +6,7 @@ sealed class AppRoutes(val routeTemplate: String) {
     data object CharacterDetails: AppRoutes("character/{id}") {
         fun create(id: Int) = "character/$id"
     }
+    data object PlanetDetails: AppRoutes("planet/{id}") {
+        fun create(id: Int) = "planet/$id"
+    }
 }
