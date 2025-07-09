@@ -1,5 +1,6 @@
 package dev.prateekthakur.dragonballencyclopedia.ui.screens.characterdetails
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -10,13 +11,17 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -28,11 +33,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import dev.prateekthakur.dragonballencyclopedia.ui.composables.InfoChip
 import dev.prateekthakur.dragonballencyclopedia.ui.composables.NetworkImage
+import dev.prateekthakur.dragonballencyclopedia.ui.navigation.navController
 import dev.prateekthakur.dragonballencyclopedia.ui.utils.Space
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
@@ -47,8 +54,18 @@ fun CharacterDetailsScreen(
     val appBar = @Composable {
         TopAppBar(
             title = {
-                Text(character!!.name)
-            }
+                Text(
+                    "${character!!.name} - ${character!!.affiliation}",
+                    style = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.primary),
+                )
+            },
+            navigationIcon = {
+                IconButton(onClick = {
+                    navController.popBackStack()
+                }) {
+                    Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = MaterialTheme.colorScheme.primary)
+                }
+            },
         )
     }
 
@@ -66,24 +83,25 @@ fun CharacterDetailsScreen(
 
                     character?.let {
                         Box(contentAlignment = Alignment.BottomCenter) {
-                            Box(
-                                modifier = modifier
-                                    .fillMaxWidth()
-                                    .clip(RoundedCornerShape(24.dp))
-                                    .height(100.dp)
-                                    .background(Color.Gray.copy(alpha = 0.5f))
-                            )
+
+                            Canvas(modifier = modifier
+                                .height(80.dp)
+                                .width(300.dp)) {
+                                drawOval(color = Color.Gray.copy(alpha = 0.5f))
+                            }
 
                             NetworkImage(
                                 it.image!!, modifier = modifier
+                                    .fillMaxWidth()
                                     .height(360.dp)
-                                    .padding(bottom = 16.dp)
+                                    .padding(bottom = 24.dp)
                             )
                         }
                         24.Space()
                         Text(
                             "${it.name} - ${it.affiliation}",
-                            style = MaterialTheme.typography.titleLarge
+                            style = MaterialTheme.typography.titleLarge.copy(MaterialTheme.colorScheme.primary),
+                            fontWeight = FontWeight.SemiBold
                         )
                         8.Space()
                         FlowRow(
@@ -99,14 +117,13 @@ fun CharacterDetailsScreen(
                             style = MaterialTheme.typography.bodyMedium,
                             textAlign = TextAlign.Justify
                         )
-
-                        HorizontalDivider(modifier = modifier.padding(vertical = 16.dp))
+                        16.Space()
                     }
 
                     character!!.originPlanet?.let {
                         Text(
                             "Origin Planet - ${it.name}",
-                            style = MaterialTheme.typography.titleLarge
+                            style = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.primary),
                         )
                         16.Space()
                         Box(
@@ -138,13 +155,14 @@ fun CharacterDetailsScreen(
                                         modifier = modifier
                                             .padding(16.dp)
                                             .clip(RoundedCornerShape(16.dp))
-                                            .background(Color.Gray).padding(
-                                            horizontal = 8.dp,
-                                            vertical = 4.dp
-                                        )
+                                            .background(Color.Gray)
+                                            .padding(
+                                                horizontal = 8.dp,
+                                                vertical = 4.dp
+                                            )
                                     )
                                     {
-                                        Text("${it+1}/${transformations.size}")
+                                        Text("${it + 1}/${transformations.size}")
                                     }
                                 }
                             }

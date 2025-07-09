@@ -23,13 +23,26 @@ fun DragonBallCharacterTransformationView(
 ) {
     Box(contentAlignment = Alignment.Center) {
         Column(modifier = modifier.padding(16.dp)) {
-            Text(transformation.name, style = MaterialTheme.typography.titleLarge)
+            Text(
+                transformation.name,
+                style = MaterialTheme.typography.titleMedium.copy(MaterialTheme.colorScheme.primary),
+            )
             Text(transformation.ki, style = MaterialTheme.typography.bodyMedium)
             Box(contentAlignment = Alignment.BottomCenter) {
-                Canvas(modifier = modifier.height(100.dp).width(300.dp)) {
+                Canvas(
+                    modifier = modifier
+                        .height(100.dp)
+                        .width(300.dp)
+                ) {
                     drawOval(color = Color.Gray.copy(alpha = 0.5f))
                 }
-                NetworkImage(transformation.image!!, modifier = modifier.padding(bottom = 24.dp).height(300.dp).fillMaxWidth())
+                NetworkImage(
+                    transformation.image!!,
+                    modifier = modifier
+                        .padding(bottom = 24.dp)
+                        .height(300.dp)
+                        .fillMaxWidth()
+                )
             }
         }
     }
