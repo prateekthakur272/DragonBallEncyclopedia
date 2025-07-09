@@ -18,14 +18,20 @@ lateinit var navController: NavHostController
 @Composable
 fun AppNavHost(controller: NavHostController = rememberNavController()) {
     navController = controller
-    NavHost(navController = navController, startDestination = AppRoutes.Home.routeTemplate){
-        composable(AppRoutes.Home.routeTemplate){
+    NavHost(navController = navController, startDestination = AppRoutes.Home.routeTemplate) {
+        composable(AppRoutes.Home.routeTemplate) {
             HomeScreen()
         }
-        composable(AppRoutes.CharacterDetails.routeTemplate, arguments = listOf(navArgument("id") { type = NavType.IntType })) {
+        composable(
+            AppRoutes.CharacterDetails.routeTemplate,
+            arguments = listOf(navArgument("id") { type = NavType.IntType })
+        ) {
             CharacterDetailsScreen()
         }
-        composable(AppRoutes.PlanetDetails.routeTemplate, arguments = listOf(navArgument("id"){ type = NavType.IntType })){
+        composable(
+            AppRoutes.PlanetDetails.routeTemplate,
+            arguments = listOf(navArgument("id") { type = NavType.IntType })
+        ) {
             PlanetDetailsScreen()
         }
     }

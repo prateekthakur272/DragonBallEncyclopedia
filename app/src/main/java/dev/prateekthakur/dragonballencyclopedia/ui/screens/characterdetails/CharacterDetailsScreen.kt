@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import dev.prateekthakur.dragonballencyclopedia.ui.composables.InfoChip
 import dev.prateekthakur.dragonballencyclopedia.ui.composables.NetworkImage
+import dev.prateekthakur.dragonballencyclopedia.ui.navigation.AppRoutes
 import dev.prateekthakur.dragonballencyclopedia.ui.navigation.navController
 import dev.prateekthakur.dragonballencyclopedia.ui.utils.Space
 
@@ -132,7 +133,9 @@ fun CharacterDetailsScreen(
                         ) {
                             NetworkImage(it.image, cornerRadius = 16, modifier = modifier
                                 .height(200.dp)
-                                .clickable { })
+                                .clickable {
+                                    navController.navigate(AppRoutes.PlanetDetails.create(it.id))
+                                })
                         }
                     }
 
