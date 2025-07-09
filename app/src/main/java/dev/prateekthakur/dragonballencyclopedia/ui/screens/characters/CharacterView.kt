@@ -1,6 +1,7 @@
 package dev.prateekthakur.dragonballencyclopedia.ui.screens.characters
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,6 +21,8 @@ import androidx.compose.ui.unit.dp
 import dev.prateekthakur.dragonballencyclopedia.domain.models.DragonBallCharacter
 import dev.prateekthakur.dragonballencyclopedia.ui.composables.InfoChip
 import dev.prateekthakur.dragonballencyclopedia.ui.composables.NetworkImage
+import dev.prateekthakur.dragonballencyclopedia.ui.navigation.AppRoutes
+import dev.prateekthakur.dragonballencyclopedia.ui.navigation.navController
 import dev.prateekthakur.dragonballencyclopedia.ui.utils.Space
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -34,7 +37,9 @@ fun CharacterView(character: DragonBallCharacter, modifier: Modifier = Modifier)
                 1.dp,
                 MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
                 RoundedCornerShape(16.dp)
-            )
+            ).clickable{
+                navController.navigate(AppRoutes.CharacterDetails.create(character.id))
+            }
     ) {
         Column(modifier = modifier.fillMaxWidth()) {
             16.Space()

@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
+import dev.prateekthakur.dragonballencyclopedia.ui.navigation.AppNavHost
 import dev.prateekthakur.dragonballencyclopedia.ui.screens.home.HomeScreen
 import dev.prateekthakur.dragonballencyclopedia.ui.theme.DragonBallEncyclopediaTheme
 
@@ -15,7 +16,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             DragonBallEncyclopediaTheme(dynamicColor = false) {
-                HomeScreen()
+                AppNavHost()
             }
         }
     }
