@@ -74,7 +74,8 @@ private fun PlanetViewPreview() {
         name = "Earth",
         description = "Earth is a planet",
         image = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-        isDestroyed = false
+        isDestroyed = false,
+        characters = null
     )
     PlanetView(planet)
 }

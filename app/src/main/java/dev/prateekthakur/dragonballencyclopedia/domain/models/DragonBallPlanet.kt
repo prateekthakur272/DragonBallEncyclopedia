@@ -5,5 +5,6 @@ data class DragonBallPlanet(
     val name: String,
     val description: String,
     val image: String,
-    val isDestroyed: Boolean
+    val isDestroyed: Boolean,
+    val characters: List<DragonBallCharacter>?
 )
